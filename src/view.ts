@@ -492,7 +492,7 @@ export class BMOView extends ItemView {
         let currentNote = '';
         if (activeFile?.extension === 'md') {
             const content = await this.app.vault.read(activeFile);
-            currentNote = '===BEGIN USER NOTE===\n\n' + content + '\n\n===END USER NOTE===';
+            currentNote = '\n\n===BEGIN USER NOTE===\n\n' + content + '\n\n===END USER NOTE===';
             if (dotElement) {
                 (dotElement as HTMLElement).style.backgroundColor = 'green';
             }
@@ -594,7 +594,7 @@ async function fetchOpenAIAPI(
             max_tokens: parseInt(maxTokens),
             temperature: temperature,
             messages: [
-                { role: 'system', content: referenceCurrentNote + settings.system_role },
+                { role: 'system', content: settings.system_role + referenceCurrentNote },
                 ...messageHistory
             ],
             stream: true,
