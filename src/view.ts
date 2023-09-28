@@ -492,7 +492,7 @@ export class BMOView extends ItemView {
         let currentNote = '';
         if (activeFile?.extension === 'md') {
             const content = await this.app.vault.read(activeFile);
-            currentNote = 'Note:```' + content + '```\n';
+            currentNote = '===BEGIN USER NOTE===\n\n' + content + '\n\n===END USER NOTE===';
             if (dotElement) {
                 (dotElement as HTMLElement).style.backgroundColor = 'green';
             }
